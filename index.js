@@ -5,7 +5,7 @@ const frenchWords = require('an-array-of-french-words');
 require('dotenv').config();
 
 const botToken = process.env.BOT_TOKEN;
-const botPrefixCommand = (process.env.PREFIX | "!");
+const botPrefixCommand = "!";
 let keyv = new Keyv();
 if (process.env.DATABASE_URL)
     keyv = new Keyv(process.env.DATABASE_URL);
