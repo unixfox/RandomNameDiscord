@@ -25,7 +25,7 @@ client.on('message', async message => {
     const command = args.shift().toLowerCase();
 
     const guildID = message.guild.id;
-    const realMembers = message.guild.members.filter(member => !member.user.bot);
+    const realMembers = (await message.guild.members.fetch()).filter(member => !member.user.bot);
     let guildDB = await keyv.get(guildID);
 
     if (!guildDB) {
@@ -139,7 +139,7 @@ client.on('message', async message => {
         await generalDiscordMessage.edit(generalDiscordEmbed);
     } else if (command) {
         const discordMessage = await message.channel.send("Please specify `!random` or `!restore`.");
-        discordMessage.delete(5000);
+        discordMessage.delete({ timeout: 5000, reason: 'It had to be done.' });
     }
 });
 
