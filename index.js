@@ -35,7 +35,7 @@ client.on('message', async message => {
 
     if (guildDB["locked"]) {
         const discordMessage = await message.channel.send("I'm sorry a task is still in progress for your guild. Please wait for it to end.");
-        discordMessage.delete(5000);
+        discordMessage.delete({ timeout: 5000, reason: 'It had to be done.' });
     }
     else if (command === "random") {
         guildDB["locked"] = true;
